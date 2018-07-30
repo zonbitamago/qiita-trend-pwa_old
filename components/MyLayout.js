@@ -1,15 +1,14 @@
 import Header from "./Header";
+import Meata from "./Meta";
 
-const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: "1px solid #DDD"
+const mainStyle = {
+  paddingTop: "2em"
 };
-
 const Layout = props => (
-  <div style={layoutStyle}>
+  <div>
+    <Meata />
     <Header />
-    {props.children}
+    <main style={mainStyle}>{props.children}</main>
   </div>
 );
 
