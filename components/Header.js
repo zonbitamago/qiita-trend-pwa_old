@@ -12,14 +12,16 @@ const antHeaderStyle = {
 };
 
 const titleStyle = {
-  margin: "auto 0"
+  margin: "auto 0px auto 10px",
+  fontSize: "25px",
+  fontFamily: "cursive"
 };
 
 const Header = () => (
   <header>
     <Layout>
       <Layout.Header style={antHeaderStyle}>
-        <div style={titleStyle}>QT</div>
+        <div style={titleStyle}>Qt</div>
       </Layout.Header>
     </Layout>
   </header>
