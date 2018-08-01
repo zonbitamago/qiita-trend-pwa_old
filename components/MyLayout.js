@@ -2,7 +2,7 @@ import Header from "./Header";
 import Meata from "./Meta";
 
 const mainStyle = {
-  paddingTop: "2em"
+  marginTop: "4em"
 };
 const Layout = props => (
   <div>
