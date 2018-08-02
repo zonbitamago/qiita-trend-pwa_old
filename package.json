@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
+    "build:static:sw": "workbox generateSW workbox-config.js",
+    "build:static": "next build && next export && npm run build:static:sw",
     "start": "next start",
     "export": "next export"
   },
@@ -27,5 +29,9 @@
     "next": "^6.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "workbox-cli": "^3.4.1",
+    "workbox-webpack-plugin": "^3.4.1"
   }
 }
