@@ -15,6 +15,7 @@ const Meta = () => (
       body {
         width: 100%;
         margin: auto;
+        background-color: honeydew;
       }
     `}</style>
   </div>

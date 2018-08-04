@@ -3,6 +3,13 @@ import fetch from "isomorphic-unfetch";
 import Item from "../components/Item";
 import { Divider } from "antd";
 
+const itemContainerStyle = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+  gridAutoRows: "1fr",
+  gridGap: " 0.8em"
+};
+
 const Index = props => {
   let daily = props.daily.map((elem, idx) => {
     let name = elem.slice(elem.indexOf("[") + 1, elem.indexOf("]"));
@@ -20,11 +27,12 @@ const Index = props => {
 
   return (
     <Layout>
+      <h1>Trend</h1>
       <h2>Dailyランキング</h2>
-      {daily}
+      <div style={itemContainerStyle}>{daily}</div>
       <Divider />
       <h2>Weeklyランキング</h2>
-      {weekly}
+      <div style={itemContainerStyle}>{weekly}</div>
       <Divider />
     </Layout>
   );
