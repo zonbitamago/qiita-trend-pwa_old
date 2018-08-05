@@ -22,13 +22,6 @@ const rateStyle = {
 };
 
 const Item = props => {
-  //   <div>
-  //     <Divider orientation="left">No.{props.idx + 1}</Divider>
-  //     <a href={props.url} target="_blank">
-  //       <p style={nameStyle}>{props.name}</p>
-  //     </a>
-  //     <p style={rateStyle}>{props.rate}</p>
-  //   </div>
   return (
     <Card bodyStyle={bodyStyle} style={cardStyle}>
       <Divider orientation="left">No.{props.idx + 1}</Divider>

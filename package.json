@@ -8,6 +8,8 @@
     "build": "next build",
     "build:static:sw": "workbox generateSW workbox-config.js",
     "build:static": "next build && next export && npm run build:static:sw",
+    "server:static:local": "npm run build:static && serve out",
+    "deploy:static": "npm run build:static && netlify deploy -p out",
     "start": "next start",
     "export": "next export"
   },
@@ -31,7 +33,7 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
-    "workbox-cli": "^3.4.1",
-    "workbox-webpack-plugin": "^3.4.1"
+    "netlify-cli": "^1.2.3",
+    "workbox-cli": "^3.4.1"
   }
 }

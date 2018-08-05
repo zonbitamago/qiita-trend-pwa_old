@@ -1,4 +1,6 @@
 import Head from "next/head";
+import ServiceWorkerRegister from "./ServiceWorkerRegister";
+
 const Meta = () => (
   <div>
     <Head>
@@ -11,6 +13,7 @@ const Meta = () => (
         crossorigin="anonymous"
       />
     </Head>
+    <ServiceWorkerRegister />
     <style jsx global>{`
       body {
         width: 100%;
