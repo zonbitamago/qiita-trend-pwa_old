@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/zonbitamago/qiita-trend-pwa#readme",
   "dependencies": {
+    "@zeit/next-css": "^0.2.0",
     "antd": "^3.7.3",
     "express": "^4.16.3",
     "isomorphic-unfetch": "^2.1.1",

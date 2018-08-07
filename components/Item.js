@@ -1,5 +1,6 @@
 import { Divider } from "antd";
 import { Card } from "antd";
+import { Icon } from "antd";
 
 const cardStyle = {
   marginBottom: "10px",
@@ -26,7 +27,10 @@ const Item = props => {
     <Card bodyStyle={bodyStyle} style={cardStyle}>
       <Divider orientation="left">No.{props.idx + 1}</Divider>
       <a href={props.url} target="_blank">
-        <p style={nameStyle}>{props.name}</p>
+        <p style={nameStyle}>
+          {props.name}
+          <Icon type="select" />
+        </p>
       </a>
       <p style={rateStyle}>{props.rate}</p>
     </Card>
