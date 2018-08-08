@@ -1,15 +1,3 @@
-const withCSS = require("@zeit/next-css");
+const withOffline = require("next-offline");
 
-module.exports = withCSS({
-  exportPathMap: function() {
-    return {
-      "/": { page: "/" },
-      "/about": { page: "/about" }
-    };
-  },
-  webpack(config, { dev }) {
-    console.log(config);
-
-    return config;
-  }
-});
+module.exports = withOffline();

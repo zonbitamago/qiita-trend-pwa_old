@@ -1,7 +1,6 @@
 import Layout from "../components/MyLayout.js";
 import fetch from "isomorphic-unfetch";
 import Item from "../components/Item";
-import { Divider } from "antd";
 
 const itemContainerStyle = {
   display: "grid",
@@ -30,10 +29,8 @@ const Index = props => {
       <h1>Trend</h1>
       <h2>Dailyランキング</h2>
       <div style={itemContainerStyle}>{daily}</div>
-      <Divider />
       <h2>Weeklyランキング</h2>
       <div style={itemContainerStyle}>{weekly}</div>
-      <Divider />
     </Layout>
   );
 };

@@ -1,8 +1,6 @@
-import Link from "next/link";
-import { Layout, Dropdown, Menu, Icon } from "antd";
-
 const antHeaderStyle = {
   position: "fixed",
+  top: "0",
   zIndex: 1,
   width: "100%",
   backgroundColor: "#55c500",
@@ -23,35 +21,13 @@ const anchorStyle = {
   color: "inherit"
 };
 
-const menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <Link href="/">
-        <a>Trend</a>
-      </Link>
-    </Menu.Item>
-    <Menu.Divider />
-    <Menu.Item key="1">
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </Menu.Item>
-  </Menu>
-);
-
 const Header = () => (
-  <header>
-    <Layout>
-      <Layout.Header style={antHeaderStyle}>
-        <Dropdown overlay={menu} trigger={["click"]}>
-          <div style={titleStyle}>
-            <a style={anchorStyle} href="#">
-              Qt<Icon type="down" />
-            </a>
-          </div>
-        </Dropdown>
-      </Layout.Header>
-    </Layout>
+  <header style={antHeaderStyle}>
+    <div style={titleStyle}>
+      <a style={anchorStyle} href="#">
+        Qt
+      </a>
+    </div>
   </header>
 );
 

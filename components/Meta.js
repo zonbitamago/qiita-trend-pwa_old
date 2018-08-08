@@ -6,14 +6,13 @@ const Meta = () => (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
-      <link async rel="stylesheet" href="/_next/static/style.css" />
     </Head>
     <ServiceWorkerRegister />
     <style jsx global>{`
       body {
-        width: 100% !important;
-        margin: auto !important;
-        background-color: honeydew !important;
+        width: 100%;
+        margin: auto;
+        background-color: #f1ffe1;
       }
     `}</style>
   </div>
