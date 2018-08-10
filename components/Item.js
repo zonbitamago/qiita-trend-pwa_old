@@ -23,17 +23,25 @@ const rateStyle = {
 };
 
 const Item = props => {
-  return (
-    <div style={cardStyle}>
-      <div style={contentStyle}>
-        <p>No.{props.idx + 1}</p>
-        <a href={props.url} target="_blank">
-          <p style={nameStyle}>{props.name}</p>
-        </a>
-        <p style={rateStyle}>{props.rate}</p>
+  if (props.isLoading) {
+    return (
+      <div style={cardStyle}>
+        <div className="loader">Loading...</div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div style={cardStyle}>
+        <div style={contentStyle}>
+          <p>No.{props.idx + 1}</p>
+          <a href={props.url} target="_blank">
+            <p style={nameStyle}>{props.name}</p>
+          </a>
+          <p style={rateStyle}>{props.rate}</p>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default Item;
