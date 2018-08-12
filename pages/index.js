@@ -94,4 +94,57 @@ class Index extends React.Component {
   }
 }
 
+// const Index = props => {
+//   let daily = props.daily.map((elem, idx) => {
+//     if (elem == undefined) {
+//       return <Item key={idx} isLoading={true} />;
+//     } else {
+//       let name = elem.slice(elem.indexOf("[") + 1, elem.indexOf("]"));
+//       let url = elem.slice(elem.indexOf("(") + 1, elem.indexOf(")"));
+//       let rate = elem.slice(elem.lastIndexOf("("));
+//       return <Item key={idx} idx={idx} url={url} name={name} rate={rate} />;
+//     }
+//   });
+
+//   let weekly = props.weekly.map((elem, idx) => {
+//     if (elem == undefined) {
+//       return <Item key={idx} isLoading={true} />;
+//     } else {
+//       let name = elem.slice(elem.indexOf("[") + 1, elem.indexOf("]"));
+//       let url = elem.slice(elem.indexOf("(") + 1, elem.indexOf(")"));
+//       let rate = elem.slice(elem.lastIndexOf("("));
+//       return <Item key={idx} idx={idx} url={url} name={name} rate={rate} />;
+//     }
+//   });
+//   return (
+//     <Layout>
+//       <h1 style={h1Style}>
+//         Trend<FontAwesomeIcon style={iconStyle} icon={faChartLine} />
+//       </h1>
+//       <h2 style={h2style}>Dailyランキング</h2>
+//       <div style={itemContainerStyle}>{daily}</div>
+//       <h2 style={h2style}>Weeklyランキング</h2>
+//       <div style={itemContainerStyle}>{weekly}</div>
+//     </Layout>
+//   );
+// };
+
+// Index.getInitialProps = async function() {
+//   const res = await fetch(
+//     "https://qiita.com/api/v2/items/bb154a4bc198fb102ff3"
+//   );
+//   const data = await res.json();
+//   console.log(await res.status);
+
+//   let daily = data.body
+//     .split("# ウィークリーいいねランキング")[0]
+//     .split("####")
+//     .slice(1);
+//   let weekly = data.body
+//     .split("# ウィークリーいいねランキング")[1]
+//     .split("####")
+//     .slice(1);
+//   return { daily: daily, weekly: weekly };
+// };
+
 export default Index;

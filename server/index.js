@@ -11,12 +11,12 @@ app
   .then(() => {
     const server = express();
 
-    if (!dev) {
-      server.get("*", (_, res, next) => {
-        res.setHeader("Cache-Control", "max-age=43200, immutable");
-        next();
-      });
-    }
+    // if (!dev) {
+    server.get("*", (_, res, next) => {
+      res.setHeader("Cache-Control", "max-age=43200, immutable");
+      next();
+    });
+    // }
 
     server.get("/service-worker.js", ServiceWorker(app));
 

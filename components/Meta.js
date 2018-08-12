@@ -17,13 +17,13 @@ const Meta = () => (
         rel="icon"
         type="image/png"
         sizes="32x32"
-        href="/static/favicon-32x32.png"
+        href="/static/icon-32x32.png"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href="/static/favicon-16x16.png"
+        href="/static/icon-16x16.png"
       />
       <link rel="manifest" href="/static/manifest.json" />
       <title>Qiita-Trend-PWA</title>
