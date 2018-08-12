@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const antHeaderStyle = {
   position: "fixed",
   top: "0",
@@ -24,9 +26,9 @@ const anchorStyle = {
 const Header = () => (
   <header style={antHeaderStyle}>
     <div style={titleStyle}>
-      <a style={anchorStyle} href="#">
-        Qt
-      </a>
+      <Link href="/">
+        <a style={anchorStyle}>Qt</a>
+      </Link>
     </div>
   </header>
 );

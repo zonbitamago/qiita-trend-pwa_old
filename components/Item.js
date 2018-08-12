@@ -9,8 +9,20 @@ const cardStyle = {
   boxShadow: "0 2px 5px #ccc"
 };
 
+const containerStyle = {
+  display: "grid",
+  gridTemplateRows: "44px 1fr"
+};
+
+const headerStyle = {
+  paddingLeft: "1em",
+  backgroundColor: "#55c500",
+  color: "white",
+  fontWeight: "bold"
+};
+
 const contentStyle = {
-  marginLeft: "1em"
+  paddingLeft: "1em"
 };
 
 const nameStyle = {
@@ -32,12 +44,16 @@ const Item = props => {
   } else {
     return (
       <div style={cardStyle}>
-        <div style={contentStyle}>
-          <p>No.{props.idx + 1}</p>
-          <a href={props.url} target="_blank">
-            <p style={nameStyle}>{props.name}</p>
-          </a>
-          <p style={rateStyle}>{props.rate}</p>
+        <div style={containerStyle}>
+          <div style={headerStyle}>
+            <p>No.{props.idx + 1}</p>
+          </div>
+          <div style={contentStyle}>
+            <a href={props.url} target="_blank">
+              <p style={nameStyle}>{props.name}</p>
+            </a>
+            <p style={rateStyle}>{props.rate}</p>
+          </div>
         </div>
       </div>
     );

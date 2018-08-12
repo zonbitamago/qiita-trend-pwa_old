@@ -87,8 +87,10 @@ class Index extends React.Component {
         </h1>
         <h2 style={h2style}>Dailyランキング</h2>
         <div style={itemContainerStyle}>{daily}</div>
+        <hr />
         <h2 style={h2style}>Weeklyランキング</h2>
         <div style={itemContainerStyle}>{weekly}</div>
+        <hr />
       </Layout>
     );
   }
