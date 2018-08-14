@@ -5,7 +5,6 @@ const mainStyle = {
 };
 const Layout = props => (
   <div>
-    {/* <Meata /> */}
     <Header />
     <main style={mainStyle}>{props.children}</main>
   </div>

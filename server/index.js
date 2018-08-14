@@ -5,6 +5,8 @@ const { join } = require("path");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+const render = require("./render");
+const RenderCache = render(app);
 
 app
   .prepare()
@@ -19,6 +21,7 @@ app
     // }
 
     server.get("/service-worker.js", ServiceWorker(app));
+    server.get("/", (req, res) => RenderCache(req, res, "/"));
 
     server.get("*", (req, res) => {
       return handle(req, res);

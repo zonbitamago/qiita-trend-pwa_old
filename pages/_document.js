@@ -15,6 +15,10 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta name="Description" content="Qiita trend information." />
           <meta name="theme-color" content="#55c500" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="#55c500"
+          />
           <link
             rel="apple-touch-icon"
             sizes="180x180"

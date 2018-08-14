@@ -4,6 +4,8 @@ import fetch from "isomorphic-unfetch";
 import Item from "../components/Item";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
+import * as localforage from "localforage";
+import moment from "moment";
 
 const itemContainerStyle = {
   display: "grid",
@@ -28,6 +30,13 @@ const iconStyle = {
   verticalAlign: "text-bottom"
 };
 
+const myLF = localforage.createInstance({
+  driver: localforage.INDEXEDDB, // LocalForage を使用する
+  name: "qt", // 名前空間
+  storeName: "trend-api", // 名前空間内のインスタンスの識別名
+  version: 1 // バージョン
+});
+
 class Index extends React.Component {
   static async getInitialProps() {
     return {
@@ -37,16 +46,27 @@ class Index extends React.Component {
   }
   constructor(props) {
     super(props);
-    this.state = {
-      daily: this.props.daily,
-      weekly: this.props.weekly
-    };
   }
   componentDidMount = async function() {
-    const res = await fetch(
-      "https://qiita.com/api/v2/items/bb154a4bc198fb102ff3"
-    );
-    const data = await res.json();
+    const localRes = await myLF.getItem("res-api");
+    let data;
+
+    if (
+      localRes == null ||
+      moment(localRes.created).isBefore(moment().subtract("15", "minutes"))
+    ) {
+      const res = await fetch(
+        "https://qiita.com/api/v2/items/bb154a4bc198fb102ff3"
+      );
+      data = await res.json();
+      console.log("fetched by API");
+      myLF.setItem("res-api", { data: data, created: moment().format() });
+    } else {
+      const dataByLF = await myLF.getItem("res-api");
+      console.log("fetched by IndexedDB");
+      data = dataByLF.data;
+    }
+
     let daily = data.body
       .split("# ウィークリーいいねランキング")[0]
       .split("####")
@@ -58,7 +78,9 @@ class Index extends React.Component {
     this.setState({ daily: daily, weekly: weekly });
   };
   render() {
-    let daily = this.state.daily.map((elem, idx) => {
+    let store = this.state == null ? this.props : this.state;
+
+    let daily = store.daily.map((elem, idx) => {
       if (elem == undefined) {
         return <Item key={idx} isLoading={true} />;
       } else {
@@ -69,10 +91,12 @@ class Index extends React.Component {
       }
     });
 
-    let weekly = this.state.weekly.map((elem, idx) => {
+    let weekly = store.weekly.map((elem, idx) => {
       if (elem == undefined) {
         return <Item key={idx} isLoading={true} />;
       } else {
+        elem = elem.split("※")[0];
+
         let name = elem.slice(elem.indexOf("[") + 1, elem.indexOf("]"));
         let url = elem.slice(elem.indexOf("(") + 1, elem.indexOf(")"));
         let rate = elem.slice(elem.lastIndexOf("("));
