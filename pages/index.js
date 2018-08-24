@@ -80,14 +80,24 @@ class Index extends React.Component {
   render() {
     let store = this.state == null ? this.props : this.state;
 
+    const replaceElem = (elem, replaceStr) => {
+      return elem.replace(replaceStr, "");
+    };
+
+    const getItemElem = (elem, idx) => {
+      let rate = elem.slice(elem.lastIndexOf("("));
+      elem = replaceElem(elem, rate);
+      let url = elem.slice(elem.lastIndexOf("(") + 1, elem.lastIndexOf(")"));
+      elem = replaceElem(elem, url);
+      let name = elem.slice(elem.indexOf("[") + 1, elem.lastIndexOf("]"));
+      return <Item key={idx} idx={idx} url={url} name={name} rate={rate} />;
+    };
+
     let daily = store.daily.map((elem, idx) => {
       if (elem == undefined) {
         return <Item key={idx} isLoading={true} />;
       } else {
-        let name = elem.slice(elem.indexOf("[") + 1, elem.indexOf("]"));
-        let url = elem.slice(elem.indexOf("(") + 1, elem.indexOf(")"));
-        let rate = elem.slice(elem.lastIndexOf("("));
-        return <Item key={idx} idx={idx} url={url} name={name} rate={rate} />;
+        return getItemElem(elem, idx);
       }
     });
 
@@ -97,17 +107,15 @@ class Index extends React.Component {
       } else {
         elem = elem.split("※")[0];
 
-        let name = elem.slice(elem.indexOf("[") + 1, elem.indexOf("]"));
-        let url = elem.slice(elem.indexOf("(") + 1, elem.indexOf(")"));
-        let rate = elem.slice(elem.lastIndexOf("("));
-        return <Item key={idx} idx={idx} url={url} name={name} rate={rate} />;
+        return getItemElem(elem, idx);
       }
     });
 
     return (
       <Layout>
         <h1 style={h1Style}>
-          Trend<FontAwesomeIcon style={iconStyle} icon={faChartLine} />
+          Trend
+          <FontAwesomeIcon style={iconStyle} icon={faChartLine} />
         </h1>
         <h2 style={h2style}>Dailyランキング</h2>
         <div style={itemContainerStyle}>{daily}</div>
