@@ -40,7 +40,7 @@ const myLF = localforage.createInstance({
 class Index extends React.Component {
   static async getInitialProps() {
     return {
-      daily: Array(10),
+      daily: Array(20),
       weekly: Array(20)
     };
   }
@@ -55,11 +55,19 @@ class Index extends React.Component {
       localRes == null ||
       moment(localRes.created).isBefore(moment().subtract("15", "minutes"))
     ) {
-      const res = await fetch(
-        "https://qiita.com/api/v2/items/bb154a4bc198fb102ff3"
-      );
-      data = await res.json();
+      // const res = await fetch(
+      //   "https://qiita.com/api/v2/items/bb154a4bc198fb102ff3"
+      // );
+      // data = await res.json();
+      const url =
+        "https://us-central1-qiita-trend-web-scraping.cloudfunctions.net/qiitaScraiping/";
+      const day = moment()
+        .subtract(1, "days")
+        .format("YYYY-MM-DD");
+      const daily = await fetch(url + "daily/" + day);
+      const weekly = await fetch(url + "weekly/" + day);
       console.log("fetched by API");
+      data = { daily: await daily.json(), weekly: await weekly.json() };
       myLF.setItem("res-api", { data: data, created: moment().format() });
     } else {
       const dataByLF = await myLF.getItem("res-api");
@@ -67,48 +75,40 @@ class Index extends React.Component {
       data = dataByLF.data;
     }
 
-    let daily = data.body
-      .split("# ウィークリーいいねランキング")[0]
-      .split("####")
-      .slice(1);
-    let weekly = data.body
-      .split("# ウィークリーいいねランキング")[1]
-      .split("####")
-      .slice(1);
+    let daily = data.daily.data;
+    let weekly = data.weekly.data;
     this.setState({ daily: daily, weekly: weekly });
   };
   render() {
     let store = this.state == null ? this.props : this.state;
 
-    const replaceElem = (elem, replaceStr) => {
-      return elem.replace(replaceStr, "");
-    };
-
     const getItemElem = (elem, idx) => {
-      let rate = elem.slice(elem.lastIndexOf("("));
-      elem = replaceElem(elem, rate);
-      let url = elem.slice(elem.lastIndexOf("(") + 1, elem.lastIndexOf(")"));
-      elem = replaceElem(elem, url);
-      let name = elem.slice(elem.indexOf("[") + 1, elem.lastIndexOf("]"));
-      return <Item key={idx} idx={idx} url={url} name={name} rate={rate} />;
+      if (elem == undefined) {
+        return <Item key={idx} isLoading={true} />;
+      }
+
+      let rate = elem.likes_count;
+      let url = elem.url;
+      let name = elem.title;
+      let user = elem.user.id;
+      return (
+        <Item
+          key={idx}
+          idx={idx}
+          url={url}
+          name={name}
+          rate={rate}
+          user={user}
+        />
+      );
     };
 
     let daily = store.daily.map((elem, idx) => {
-      if (elem == undefined) {
-        return <Item key={idx} isLoading={true} />;
-      } else {
-        return getItemElem(elem, idx);
-      }
+      return getItemElem(elem, idx);
     });
 
     let weekly = store.weekly.map((elem, idx) => {
-      if (elem == undefined) {
-        return <Item key={idx} isLoading={true} />;
-      } else {
-        elem = elem.split("※")[0];
-
-        return getItemElem(elem, idx);
-      }
+      return getItemElem(elem, idx);
     });
 
     return (

@@ -30,7 +30,7 @@ const nameStyle = {
   marginRight: "1em"
 };
 
-const rateStyle = {
+const addInfoStyle = {
   marginLeft: "2em"
 };
 
@@ -46,13 +46,28 @@ const Item = props => {
       <div style={cardStyle}>
         <div style={containerStyle}>
           <div style={headerStyle}>
-            <p>No.{props.idx + 1}</p>
+            <p>
+              No.
+              {props.idx + 1}
+            </p>
           </div>
           <div style={contentStyle}>
-            <a href={props.url} target="_blank">
-              <p style={nameStyle}>{props.name}</p>
-            </a>
-            <p style={rateStyle}>{props.rate}</p>
+            <p style={nameStyle}>
+              <a href={props.url} target="_blank" rel="noreferrer">
+                {props.name}
+              </a>
+              &nbsp;(
+              {props.rate}
+              いいね)
+            </p>
+            {/* <p style={addInfoStyle}>
+              ({props.rate}
+              いいね)
+            </p> */}
+            <p style={addInfoStyle}>
+              by&nbsp;
+              {props.user}
+            </p>
           </div>
         </div>
       </div>
