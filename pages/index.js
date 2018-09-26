@@ -61,13 +61,31 @@ class Index extends React.Component {
       // data = await res.json();
       const url =
         "https://us-central1-qiita-trend-web-scraping.cloudfunctions.net/qiitaScraiping/";
-      const day = moment()
+      const oneDayAgo = moment()
         .subtract(1, "days")
         .format("YYYY-MM-DD");
-      const daily = await fetch(url + "daily/" + day);
-      const weekly = await fetch(url + "weekly/" + day);
+      let dailyFetch = await fetch(url + "daily/" + oneDayAgo);
+      let weeklyFetch = await fetch(url + "weekly/" + oneDayAgo);
       console.log("fetched by API");
-      data = { daily: await daily.json(), weekly: await weekly.json() };
+      try {
+        data = {
+          daily: await dailyFetch.json(),
+          weekly: await weeklyFetch.json()
+        };
+      } catch (error) {
+        const twoDaysAgo = moment()
+          .subtract(2, "days")
+          .format("YYYY-MM-DD");
+
+        dailyFetch = await fetch(url + "daily/" + twoDaysAgo);
+        weeklyFetch = await fetch(url + "weekly/" + twoDaysAgo);
+        console.log("fetched two days ago by API");
+
+        data = {
+          daily: await dailyFetch.json(),
+          weekly: await weeklyFetch.json()
+        };
+      }
       myLF.setItem("res-api", { data: data, created: moment().format() });
     } else {
       const dataByLF = await myLF.getItem("res-api");
