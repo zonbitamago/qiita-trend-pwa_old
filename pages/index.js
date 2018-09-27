@@ -7,6 +7,21 @@ import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import * as localforage from "localforage";
 import moment from "moment";
 
+const momentJA = () => {
+  return moment()
+    .utc()
+    .add(9, "hours");
+};
+const oneDayAgo = momentJA()
+  .subtract(1, "days")
+  .format("YYYY-MM-DD");
+const twoDaysAgo = momentJA()
+  .subtract(2, "days")
+  .format("YYYY-MM-DD");
+const oneWeekAgo = momentJA()
+  .subtract(7, "days")
+  .format("YYYY-MM-DD");
+
 const itemContainerStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
@@ -20,6 +35,10 @@ const h1Style = {
 };
 
 const h2style = {
+  marginLeft: "10px"
+};
+
+const h3style = {
   marginLeft: "10px"
 };
 
@@ -41,7 +60,9 @@ class Index extends React.Component {
   static async getInitialProps() {
     return {
       daily: Array(20),
-      weekly: Array(20)
+      weekly: Array(20),
+      oneDayAgo: "",
+      oneWeekAgo: ""
     };
   }
   constructor(props) {
@@ -53,17 +74,10 @@ class Index extends React.Component {
 
     if (
       localRes == null ||
-      moment(localRes.created).isBefore(moment().subtract("15", "minutes"))
+      moment(localRes.created).isBefore(momentJA().subtract("15", "minutes"))
     ) {
-      // const res = await fetch(
-      //   "https://qiita.com/api/v2/items/bb154a4bc198fb102ff3"
-      // );
-      // data = await res.json();
       const url =
         "https://us-central1-qiita-trend-web-scraping.cloudfunctions.net/qiitaScraiping/";
-      const oneDayAgo = moment()
-        .subtract(1, "days")
-        .format("YYYY-MM-DD");
       let dailyFetch = await fetch(url + "daily/" + oneDayAgo);
       let weeklyFetch = await fetch(url + "weekly/" + oneDayAgo);
       console.log("fetched by API");
@@ -73,10 +87,6 @@ class Index extends React.Component {
           weekly: await weeklyFetch.json()
         };
       } catch (error) {
-        const twoDaysAgo = moment()
-          .subtract(2, "days")
-          .format("YYYY-MM-DD");
-
         dailyFetch = await fetch(url + "daily/" + twoDaysAgo);
         weeklyFetch = await fetch(url + "weekly/" + twoDaysAgo);
         console.log("fetched two days ago by API");
@@ -86,7 +96,10 @@ class Index extends React.Component {
           weekly: await weeklyFetch.json()
         };
       }
-      myLF.setItem("res-api", { data: data, created: moment().format() });
+      myLF.setItem("res-api", {
+        data: data,
+        created: momentJA().format()
+      });
     } else {
       const dataByLF = await myLF.getItem("res-api");
       console.log("fetched by IndexedDB");
@@ -95,7 +108,12 @@ class Index extends React.Component {
 
     let daily = data.daily.data;
     let weekly = data.weekly.data;
-    this.setState({ daily: daily, weekly: weekly });
+    this.setState({
+      daily: daily,
+      weekly: weekly,
+      oneDayAgo: oneDayAgo,
+      oneWeekAgo: oneWeekAgo
+    });
   };
   render() {
     let store = this.state == null ? this.props : this.state;
@@ -129,6 +147,17 @@ class Index extends React.Component {
       return getItemElem(elem, idx);
     });
 
+    let oneDay =
+      store.oneDayAgo == "" ? "" : <h3 style={h3style}>({store.oneDayAgo})</h3>;
+    let oneWeek =
+      store.oneWeekAgo == "" ? (
+        ""
+      ) : (
+        <h3 style={h3style}>
+          ({store.oneWeekAgo}〜{store.oneDayAgo})
+        </h3>
+      );
+
     return (
       <Layout>
         <h1 style={h1Style}>
@@ -136,67 +165,16 @@ class Index extends React.Component {
           <FontAwesomeIcon style={iconStyle} icon={faChartLine} />
         </h1>
         <h2 style={h2style}>Dailyランキング</h2>
+        {oneDay}
         <div style={itemContainerStyle}>{daily}</div>
         <hr />
         <h2 style={h2style}>Weeklyランキング</h2>
+        {oneWeek}
         <div style={itemContainerStyle}>{weekly}</div>
         <hr />
       </Layout>
     );
   }
 }
-
-// const Index = props => {
-//   let daily = props.daily.map((elem, idx) => {
-//     if (elem == undefined) {
-//       return <Item key={idx} isLoading={true} />;
-//     } else {
-//       let name = elem.slice(elem.indexOf("[") + 1, elem.indexOf("]"));
-//       let url = elem.slice(elem.indexOf("(") + 1, elem.indexOf(")"));
-//       let rate = elem.slice(elem.lastIndexOf("("));
-//       return <Item key={idx} idx={idx} url={url} name={name} rate={rate} />;
-//     }
-//   });
-
-//   let weekly = props.weekly.map((elem, idx) => {
-//     if (elem == undefined) {
-//       return <Item key={idx} isLoading={true} />;
-//     } else {
-//       let name = elem.slice(elem.indexOf("[") + 1, elem.indexOf("]"));
-//       let url = elem.slice(elem.indexOf("(") + 1, elem.indexOf(")"));
-//       let rate = elem.slice(elem.lastIndexOf("("));
-//       return <Item key={idx} idx={idx} url={url} name={name} rate={rate} />;
-//     }
-//   });
-//   return (
-//     <Layout>
-//       <h1 style={h1Style}>
-//         Trend<FontAwesomeIcon style={iconStyle} icon={faChartLine} />
-//       </h1>
-//       <h2 style={h2style}>Dailyランキング</h2>
-//       <div style={itemContainerStyle}>{daily}</div>
-//       <h2 style={h2style}>Weeklyランキング</h2>
-//       <div style={itemContainerStyle}>{weekly}</div>
-//     </Layout>
-//   );
-// };
-
-// Index.getInitialProps = async function() {
-//   const res = await fetch(
-//     "https://qiita.com/api/v2/items/bb154a4bc198fb102ff3"
-//   );
-//   const data = await res.json();
-//   console.log(await res.status);
-
-//   let daily = data.body
-//     .split("# ウィークリーいいねランキング")[0]
-//     .split("####")
-//     .slice(1);
-//   let weekly = data.body
-//     .split("# ウィークリーいいねランキング")[1]
-//     .split("####")
-//     .slice(1);
-//   return { daily: daily, weekly: weekly };
-// };
 
 export default Index;
