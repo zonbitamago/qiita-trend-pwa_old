@@ -11,10 +11,28 @@ export default class MyDocument extends Document {
     return (
       <html lang="ja">
         <Head>
+          <title>Qiita-Trend-PWA</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta charSet="utf-8" />
-          <meta name="Description" content="Qiita trend information." />
+          <meta
+            name="Description"
+            content="Qiita trend information. Qiitaいいね数集計情報"
+          />
           <meta name="theme-color" content="#55c500" />
+          <meta property="og:title" content="Qiita-Trend-PWA" />
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:description"
+            content="Qiita trend information. Qiitaいいね数集計情報"
+          />
+          <meta
+            property="og:image"
+            content="https://qiita-trend-pwa.now.sh/static/screenshot.png"
+          />
+          <meta property="og:image:alt" content="Qiita-Trend-PWA" />
+          <meta property="og:url" content="https://qiita-trend-pwa.now.sh/" />
+          <meta property="og:site_name" content="Qiita-Trend-PWA" />
+          <meta name="twitter:card" content="summary" />
           <meta
             name="apple-mobile-web-app-status-bar-style"
             content="#55c500"
@@ -37,7 +55,6 @@ export default class MyDocument extends Document {
             href="/static/icon-16x16.png"
           />
           <link rel="manifest" href="/static/manifest.json" />
-          <title>Qiita-Trend-PWA</title>
         </Head>
         <ServiceWorkerRegister />
         <style
