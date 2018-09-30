@@ -40,7 +40,7 @@ const Header = () => (
     </div>
     <div style={githubStyle}>
       <Link href="https://github.com/zonbitamago/qiita-trend-pwa">
-        <a style={anchorStyle} target="_blank">
+        <a style={anchorStyle} target="_blank" title="github">
           {/* Github */}
           <FontAwesomeIcon icon={faGithub} />
         </a>
