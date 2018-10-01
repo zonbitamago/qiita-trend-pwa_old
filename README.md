@@ -1,5 +1,15 @@
 # qiita-trend-pwa
 
-開発中。。。
+# Dependency
 
-developing...
+# Usage
+
+# Licence
+
+This software is released under the MIT License, see LICENSE.
+
+# Authors
+
+[zonbitamago](https://github.com/zonbitamago)
+
+# References
