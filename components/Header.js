@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faChartLine, faChartPie } from "@fortawesome/free-solid-svg-icons";
 
 const antHeaderStyle = {
   position: "fixed",
@@ -24,10 +25,16 @@ const titleStyle = {
 
 const githubStyle = {
   margin: "auto 10px auto 0px",
-  fontSize: "2em"
+  fontSize: "2em",
+  display: "flex"
 };
 
 const anchorStyle = {
+  color: "inherit"
+};
+
+const linkIcon = {
+  margin: "auto 5px",
   color: "inherit"
 };
 
@@ -39,8 +46,18 @@ const Header = () => (
       </Link>
     </div>
     <div style={githubStyle}>
+      <Link href="/">
+        <a style={linkIcon} title="Trend">
+          <FontAwesomeIcon icon={faChartLine} />
+        </a>
+      </Link>
+      <Link href="/graph">
+        <a style={linkIcon} title="Graph">
+          <FontAwesomeIcon icon={faChartPie} />
+        </a>
+      </Link>
       <Link href="https://github.com/zonbitamago/qiita-trend-pwa">
-        <a style={anchorStyle} target="_blank" title="github">
+        <a style={linkIcon} target="_blank" title="github">
           {/* Github */}
           <FontAwesomeIcon icon={faGithub} />
         </a>
