@@ -9,7 +9,7 @@
     "build:static:sw": "workbox generateSW workbox-config.js",
     "build:static": "next build && next export && npm run build:static:sw",
     "server:static:local": "npm run build:static && serve out",
-    "deploy": "now --public && now alias",
+    "deploy": "now rm qiita-trend-pwa -y && now --public && now alias",
     "deploy:static": "npm run build:static && netlify deploy -p out",
     "start": "NODE_ENV=production node ./server/index.js",
     "export": "next export"
