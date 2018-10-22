@@ -7,6 +7,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const render = require("./render");
 const RenderCache = render(app);
+const moment = require("moment");
 
 app
   .prepare()
@@ -21,9 +22,13 @@ app
     // }
 
     server.get("/service-worker.js", ServiceWorker(app));
-    server.get("/", (req, res) => RenderCache(req, res, "/"));
+    server.get("/", (req, res) => {
+      showAccessLog(req);
+      RenderCache(req, res, "/");
+    });
 
     server.get("*", (req, res) => {
+      showAccessLog(req);
       return handle(req, res);
     });
 
@@ -41,4 +46,17 @@ const ServiceWorker = app => (req, res) => {
   const filePath = join(__dirname, "../", ".next", "service-worker.js");
 
   app.serveStatic(req, res, filePath);
+};
+
+const showAccessLog = req => {
+  console.info(
+    "[" +
+      moment()
+        .utc()
+        .add(9, "hours")
+        .format() +
+      "]" +
+      " Access: " +
+      req.url
+  );
 };
