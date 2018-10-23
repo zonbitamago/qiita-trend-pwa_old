@@ -33,6 +33,10 @@ const anchorStyle = {
   color: "inherit"
 };
 
+const imageStyle = {
+  height: "48px"
+};
+
 const linkIcon = {
   margin: "auto 5px",
   color: "inherit"
@@ -42,24 +46,27 @@ const Header = () => (
   <header style={antHeaderStyle}>
     <div style={titleStyle}>
       <Link href="/">
-        <a style={anchorStyle}>Qt</a>
+        {/* <a style={anchorStyle}>Qt</a> */}
+        <a style={anchorStyle}>
+          <img src="static/icon-72x72.png" style={imageStyle} />
+        </a>
       </Link>
     </div>
     <div style={githubStyle}>
       <Link href="/">
         <a style={linkIcon} title="Trend">
-          <FontAwesomeIcon icon={faChartLine} />
+          <FontAwesomeIcon icon={faChartLine} size="fa-2x" />
         </a>
       </Link>
       <Link href="/graph">
         <a style={linkIcon} title="Graph">
-          <FontAwesomeIcon icon={faChartPie} />
+          <FontAwesomeIcon icon={faChartPie} size="fa-2x" />
         </a>
       </Link>
       <Link href="https://github.com/zonbitamago/qiita-trend-pwa">
         <a style={linkIcon} target="_blank" title="github">
           {/* Github */}
-          <FontAwesomeIcon icon={faGithub} />
+          <FontAwesomeIcon icon={faGithub} size="fa-2x" />
         </a>
       </Link>
     </div>
