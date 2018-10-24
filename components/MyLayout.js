@@ -1,13 +1,11 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import "./MyLayout.css";
 
-const mainStyle = {
-  marginTop: "4em"
-};
 const Layout = props => (
   <div>
     <Header />
-    <main style={mainStyle}>{props.children}</main>
+    <main className="mylayout_mainStyle">{props.children}</main>
     <Footer />
   </div>
 );

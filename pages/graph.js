@@ -5,26 +5,7 @@ import { faChartPie } from "@fortawesome/free-solid-svg-icons";
 import * as FetchUtil from "../components/util/FetchUtil";
 import * as DateUtil from "../components/util/DateUtil";
 import ReactHighcharts from "react-highcharts";
-
-const h1Style = {
-  fontFamily: "Hiragino Maru Gothic ProN",
-  marginLeft: "10px"
-};
-
-const h2style = {
-  marginLeft: "10px"
-};
-
-const h3style = {
-  marginLeft: "10px"
-};
-
-const iconStyle = {
-  width: "1em",
-  height: "1em",
-  marginLeft: "10px",
-  verticalAlign: "text-bottom"
-};
+import "./graph.css";
 
 const getGraphData = array => {
   let tagCount = [];
@@ -109,26 +90,30 @@ class Graph extends React.Component {
     const dailyConfig = getGraphConfig(store.dailyTagCount);
     const weeklyConfig = getGraphConfig(store.weeklyTagCount);
     let oneDay =
-      store.oneDayAgo == "" ? "" : <h3 style={h3style}>({store.oneDayAgo})</h3>;
+      store.oneDayAgo == "" ? (
+        ""
+      ) : (
+        <h3 className="graph_h3style">({store.oneDayAgo})</h3>
+      );
     let oneWeek =
       store.oneWeekAgo == "" ? (
         ""
       ) : (
-        <h3 style={h3style}>
+        <h3 className="graph_h3style">
           ({store.oneWeekAgo}〜{store.oneDayAgo})
         </h3>
       );
     return (
       <Layout>
-        <h1 style={h1Style}>
+        <h1 className="graph_h1Style">
           Graph
-          <FontAwesomeIcon style={iconStyle} icon={faChartPie} />
+          <FontAwesomeIcon className="graph_iconStyle" icon={faChartPie} />
         </h1>
-        <h2 style={h2style}>Daily</h2>
+        <h2 className="graph_h2style">Daily</h2>
         {oneDay}
         <ReactHighcharts config={dailyConfig} />
         <hr />
-        <h2 style={h2style}>Weekly</h2>
+        <h2 className="graph_h2style">Weekly</h2>
         {oneWeek}
         <ReactHighcharts config={weeklyConfig} />
         <hr />

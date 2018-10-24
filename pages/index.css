@@ -1,0 +1,54 @@
+@media screen and (max-width: 600px) {
+  .index_itemContainerStyle {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 0.8em;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .index_itemContainerStyle {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 0.8em;
+  }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  .index_itemContainerStyle {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 0.8em;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .index_itemContainerStyle {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 0.8em;
+  }
+}
+.index_h1Style {
+  font-family: Hiragino Maru Gothic ProN;
+  margin-left: 10px;
+}
+
+.index_h2style {
+  margin-left: 10px;
+}
+
+.index_h3style {
+  margin-left: 10px;
+}
+
+.index_iconStyle {
+  width: 1em;
+  height: 1em;
+  margin-left: 10px;
+  vertical-align: text-bottom;
+}

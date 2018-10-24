@@ -5,33 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import * as DateUtil from "../components/util/DateUtil";
 import * as FetchUtil from "../components/util/FetchUtil";
-
-const itemContainerStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-  gridAutoRows: "1fr",
-  gridGap: " 0.8em"
-};
-
-const h1Style = {
-  fontFamily: "Hiragino Maru Gothic ProN",
-  marginLeft: "10px"
-};
-
-const h2style = {
-  marginLeft: "10px"
-};
-
-const h3style = {
-  marginLeft: "10px"
-};
-
-const iconStyle = {
-  width: "1em",
-  height: "1em",
-  marginLeft: "10px",
-  verticalAlign: "text-bottom"
-};
+import "./index.css";
 
 class Index extends React.Component {
   static async getInitialProps() {
@@ -90,29 +64,33 @@ class Index extends React.Component {
     });
 
     let oneDay =
-      store.oneDayAgo == "" ? "" : <h3 style={h3style}>({store.oneDayAgo})</h3>;
+      store.oneDayAgo == "" ? (
+        ""
+      ) : (
+        <h3 className="index_h3style">({store.oneDayAgo})</h3>
+      );
     let oneWeek =
       store.oneWeekAgo == "" ? (
         ""
       ) : (
-        <h3 style={h3style}>
+        <h3 className="index_h3style">
           ({store.oneWeekAgo}〜{store.oneDayAgo})
         </h3>
       );
 
     return (
       <Layout>
-        <h1 style={h1Style}>
+        <h1 className="index_h1Style">
           Trend
-          <FontAwesomeIcon style={iconStyle} icon={faChartLine} />
+          <FontAwesomeIcon className="index_iconStyle" icon={faChartLine} />
         </h1>
-        <h2 style={h2style}>Dailyランキング</h2>
+        <h2 className="index_h2style">Dailyランキング</h2>
         {oneDay}
-        <div style={itemContainerStyle}>{daily}</div>
+        <div className="index_itemContainerStyle">{daily}</div>
         <hr />
-        <h2 style={h2style}>Weeklyランキング</h2>
+        <h2 className="index_h2style">Weeklyランキング</h2>
         {oneWeek}
-        <div style={itemContainerStyle}>{weekly}</div>
+        <div className="index_itemContainerStyle">{weekly}</div>
         <hr />
       </Layout>
     );
