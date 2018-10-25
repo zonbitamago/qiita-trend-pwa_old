@@ -9,7 +9,11 @@ const Header = () => (
     <div className="header_titleStyle">
       <Link href="/">
         <a className="header_anchorStyle">
-          <img src="static/icon-72x72.png" className="header_imageStyle" />
+          <img
+            src="static/icon-72x72.png"
+            className="header_imageStyle"
+            alt="Qiita-trend-PWA"
+          />
         </a>
       </Link>
     </div>

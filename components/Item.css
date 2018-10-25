@@ -12,6 +12,7 @@
 .item_containerStyle {
   display: grid;
   grid-template-rows: 44px 1fr;
+  grid-template-columns: 1fr 0px;
 }
 
 .item_headerStyle {
@@ -19,10 +20,12 @@
   background-color: #55c500;
   color: white;
   font-weight: bold;
+  grid-row: 1/2;
 }
 
 .item_contentStyle {
   padding-left: 1em;
+  grid-row: 2/3;
 }
 
 .item_nameStyle {

@@ -36,7 +36,7 @@ class Index extends React.Component {
 
     const getItemElem = (elem, idx) => {
       if (elem == undefined) {
-        return <Item key={idx} isLoading={true} />;
+        return <Item key={idx} idx={idx} isLoading={true} />;
       }
 
       let rate = elem.likes_count;

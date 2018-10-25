@@ -1,15 +1,16 @@
 import "./Item.css";
 
 const Item = props => {
+  const cardClassName = "item_cardStyle item_card" + props.idx;
   if (props.isLoading) {
     return (
-      <div className="item_cardStyle">
+      <div className={cardClassName}>
         <div className="loader">Loading...</div>
       </div>
     );
   } else {
     return (
-      <div className="item_cardStyle">
+      <div className={cardClassName}>
         <div className="item_containerStyle">
           <div className="item_headerStyle">
             <p>
