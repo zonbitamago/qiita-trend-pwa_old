@@ -29,7 +29,12 @@ const Header = () => (
         </a>
       </Link>
       <Link href="https://github.com/zonbitamago/qiita-trend-pwa">
-        <a className="header_linkIcon" target="_blank" title="github">
+        <a
+          className="header_linkIcon"
+          target="_blank"
+          title="github"
+          rel="noopener"
+        >
           <FontAwesomeIcon icon={faGithub} size="1x" />
         </a>
       </Link>
