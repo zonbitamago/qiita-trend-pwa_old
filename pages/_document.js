@@ -54,6 +54,10 @@ export default class MyDocument extends Document {
             href="/static/icon-16x16.png"
           />
           <link rel="manifest" href="/static/manifest.json" />
+          <meta
+            name="google-site-verification"
+            content="CHhuUTn-soF3ljicreBXjlpT8_7pAp-S5NCGoPR6SXs"
+          />
         </Head>
         <ServiceWorkerRegister />
         <style
