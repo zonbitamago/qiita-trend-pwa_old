@@ -5,7 +5,6 @@ import { faChartPie } from "@fortawesome/free-solid-svg-icons";
 import * as FetchUtil from "../components/util/FetchUtil";
 import * as DateUtil from "../components/util/DateUtil";
 import ReactHighcharts from "react-highcharts";
-import "./graph.css";
 
 const getGraphData = array => {
   let tagCount = [];

@@ -413,3 +413,114 @@
   margin-left: 10px;
   vertical-align: middle;
 }
+
+.graph_h1Style {
+  font-family: Hiragino Maru Gothic ProN;
+  margin-left: 10px;
+}
+
+.graph_h2style {
+  margin-left: 10px;
+}
+
+.graph_h3style {
+  margin-left: 10px;
+}
+
+.graph_iconStyle {
+  width: 1em;
+  height: 1em;
+  margin-left: 10px;
+  vertical-align: text-bottom;
+}
+
+.footer_footerStyle {
+  margin: 0px 10px 8px 0px;
+  display: flex;
+  justify-content: flex-end;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.header_antHeaderStyle {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #55c500;
+  color: white;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px;
+  line-height: 0px;
+}
+
+.header_titleStyle {
+  margin: auto 0px auto 10px;
+  font-size: 25px;
+  font-family: cursive;
+}
+
+.header_githubStyle {
+  margin: 14px 10px 14px 0px;
+  font-size: 2em;
+  display: flex;
+}
+
+.header_anchorStyle {
+  color: inherit;
+}
+
+.header_imageStyle {
+  height: 48px;
+}
+
+.header_linkIcon {
+  margin: auto 5px;
+  color: inherit;
+}
+
+.item_cardStyle {
+  margin-bottom: 10px;
+  overflow: hidden;
+  min-width: 0;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px #ccc;
+}
+
+.item_containerStyle {
+  display: grid;
+  grid-template-rows: 44px 1fr;
+  grid-template-columns: 1fr 0px;
+}
+
+.item_headerStyle {
+  padding-left: 1em;
+  background-color: #55c500;
+  color: white;
+  font-weight: bold;
+  grid-row: 1/2;
+}
+
+.item_contentStyle {
+  padding-left: 1em;
+  grid-row: 2/3;
+}
+
+.item_nameStyle {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.item_addInfoStyle {
+  margin-left: 2em;
+}
+
+.mylayout_mainStyle {
+  margin-top: 60px;
+}

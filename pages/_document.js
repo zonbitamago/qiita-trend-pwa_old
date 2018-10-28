@@ -1,13 +1,30 @@
 import Document, { Head, Main, NextScript } from "next/document";
 import ServiceWorkerRegister from "../components/ServiceWorkerRegister";
+import autoprefixer from "autoprefixer";
+import postcss from "postcss";
+import fs from "fs";
+import util from "util";
+
+const readFile = util.promisify(fs.readFile);
+
+const getCss = async () => {
+  const data = await readFile("pages/_document.css");
+  const result = await postcss([autoprefixer({ grid: true })]).process(data, {
+    from: "pages/_document.css"
+  });
+  return result.css;
+};
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
+    const css = await getCss();
+
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    return { ...initialProps, css };
   }
 
   render() {
+    // console.log("css", this.props.css);
     return (
       <html lang="ja">
         <Head>
@@ -152,6 +169,8 @@ export default class MyDocument extends Document {
               transform: rotate(360deg);
             }
           }
+
+          ${this.props.css}
         `
           }}
         />

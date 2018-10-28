@@ -2,7 +2,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faChartLine, faChartPie } from "@fortawesome/free-solid-svg-icons";
-import "./Header.css";
 
 const Header = () => (
   <header className="header_antHeaderStyle">

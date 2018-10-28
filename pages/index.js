@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import * as DateUtil from "../components/util/DateUtil";
 import * as FetchUtil from "../components/util/FetchUtil";
-import "./index.css";
 
 class Index extends React.Component {
   static async getInitialProps() {

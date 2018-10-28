@@ -1,5 +1,3 @@
-import "./Item.css";
-
 const Item = props => {
   const cardClassName = "item_cardStyle item_card" + props.idx;
   if (props.isLoading) {

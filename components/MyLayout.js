@@ -1,6 +1,5 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import "./MyLayout.css";
 
 const Layout = props => (
   <div>
