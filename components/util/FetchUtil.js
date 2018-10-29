@@ -20,8 +20,7 @@ export const fetchData = async function() {
       DateUtil.momentJA().subtract("15", "minutes")
     )
   ) {
-    const url =
-      "https://us-central1-qiita-trend-web-scraping.cloudfunctions.net/qiitaScraiping/";
+    const url = "https://qiita-trend-web-scraping.firebaseapp.com/";
     let dailyFetch = await fetch(url + "daily/" + DateUtil.oneDayAgo);
     let weeklyFetch = await fetch(url + "weekly/" + DateUtil.oneDayAgo);
     console.log("fetched by API");
