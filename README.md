@@ -2,16 +2,17 @@
 
 [![Lighthouse score: 98/100](https://lighthouse-badge.appspot.com/?score=98&category=Performance)](https://github.com/ebidel/lighthouse-badge)
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=PWA)](https://github.com/ebidel/lighthouse-badge)
+[![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=Accessibility)](https://github.com/ebidel/lighthouse-badge)
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=SEO)](https://github.com/ebidel/lighthouse-badge)
 
 [Qiita-Trend-PWA](https://qiita-trend-pwa.now.sh/)<br>
 PWA を適用した Qiita のいいねランキング集計サイト。<br>
-![screenshot1](static/screen_shot1.png)
-![screenshot2](static/screen_shot2.png)
+![screenshot1](doc/img/screen_shot1.png)
+![screenshot2](doc/img/screen_shot2.png)
 
 # Feature
 
-![lighthouse-score](static/lighthouse-score.png)
+![lighthouse-score](doc/img/lighthouse-score.png)
 
 - Progressive web app
   - offline
