@@ -16,7 +16,12 @@ app
 
     // if (!dev) {
     server.get("*", (_, res, next) => {
-      res.setHeader("Cache-Control", "max-age=43200, immutable");
+      //s-maxage=31536000 - 1年
+      //max-age=43200 -12時間
+      res.setHeader(
+        "Cache-Control",
+        "s-maxage=31536000, max-age=43200, immutable"
+      );
       next();
     });
     // }
