@@ -47,9 +47,6 @@
     "react-highcharts": "^16.0.2"
   },
   "devDependencies": {},
-  "now": {
-    "alias": "qiita-trend-pwa"
-  },
   "engines": {
     "node": ">=10.x.x"
   }
