@@ -34,6 +34,7 @@
     "autoprefixer": "^9.3.1",
     "await-wrap": "^0.1.0",
     "express": "^4.16.4",
+    "fsevents": "^1.2.9",
     "highcharts": "^6.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "localforage": "^1.7.2",
@@ -42,8 +43,8 @@
     "next": "^9.3.2",
     "next-offline": "^3.0.2",
     "postcss": "^7.0.5",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-highcharts": "^16.0.2"
   },
   "devDependencies": {},
