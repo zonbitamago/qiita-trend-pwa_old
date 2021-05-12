@@ -41,7 +41,7 @@
     "moment": "^2.22.2",
     "next": "^9.3.2",
     "next-offline": "^3.0.2",
-    "postcss": "^7.0.5",
+    "postcss": "^8.2.10",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-highcharts": "^16.0.2"
